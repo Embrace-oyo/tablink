@@ -1,0 +1,17 @@
+{
+  "name": "tablink.js",
+  "version": "1.0.0",
+  "keywords": [
+    "tab",
+    "scroll",
+    "tabScroll",
+    "link"
+  ],
+  "description": "Tabs linked to long content scrolling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kongjianqiu",
+  "license": "ISC"
+}
