@@ -1,4 +1,4 @@
-#tablink.js
+# tablink.js
 
 
 
@@ -7,4 +7,3 @@
 > npm install tablink.js
 
 ## Usage
-# tablink
