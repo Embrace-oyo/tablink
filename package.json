@@ -7,11 +7,15 @@
     "tabScroll",
     "link"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Embrace-oyo/tablink"
+  },
   "description": "Tabs linked to long content scrolling",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kongjianqiu",
-  "license": "ISC"
+  "license": "MIT"
 }
