@@ -12,10 +12,31 @@
     "url": "https://github.com/Embrace-oyo/tablink"
   },
   "description": "Tabs linked to long content scrolling",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "webpack server --config ./webpackConfig/webpack.dev.config.js",
+    "build": "webpack --config ./webpackConfig/webpack.prod.config.js"
   },
   "author": "kongjianqiu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.18.2",
+    "@soda/friendly-errors-webpack-plugin": "^1.8.1",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "node-notifier": "^10.0.1",
+    "portfinder": "^1.0.28",
+    "webpack": "^5.73.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.8.0"
+  }
 }

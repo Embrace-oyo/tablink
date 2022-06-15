@@ -8,10 +8,7 @@
 3. TEST
 4. TEST
 
-<code>
-let code = 12312
-let a = code
-</code>
+> 1231231
 
 
 新建自己的工具类
