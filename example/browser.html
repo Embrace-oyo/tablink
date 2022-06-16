@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TabLink</title>
-    <script src="../src/tablink.js"></script>
+    <script src="../lib/Tablink.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -1744,7 +1744,6 @@
         let id = e.target.innerText
         a.click(id, index)
     }, false)
-
     function callback(index) {
         let activeDom = document.querySelectorAll('.letterList .item')
         for (let i = 0; i < activeDom.length; i++) {
@@ -1752,8 +1751,6 @@
         }
         activeDom[index].classList.add('active')
     }
-
-
     let a = new Tablink({
         contentDom: cityList,
         tabDom: letterList,

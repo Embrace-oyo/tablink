@@ -18,30 +18,31 @@ class Tablink {
     listener() {
         let scrollH = this.contentDom.scrollHeight
         let contentDomH = this.contentDom.clientHeight
-        this.contentDom.addEventListener('scroll', (e) => {
-            let scrollTop = this.contentDom.scrollTop + this.offset;
+        let _this = this
+        this.contentDom.addEventListener('scroll', this.throttle(function () {
+            let scrollTop = _this.contentDom.scrollTop + _this.offset;
             let isBottom = scrollTop + contentDomH >= scrollH;
             let interval = null;
-            for (let i = 0; i < this.itemListDom.length; i++) {
-                let curTop = this.itemListDom[i].offsetTop - this.offset;
+            for (let i = 0; i < _this.itemListDom.length; i++) {
+                let curTop = _this.itemListDom[i].offsetTop - _this.offset;
                 // 如果是最后一个
-                if (i === this.itemListDom.length - 1) {
-                    let curHeight = this.itemListDom[i].offsetHeight;
+                if (i === _this.itemListDom.length - 1) {
+                    let curHeight = _this.itemListDom[i].offsetHeight;
                     interval =
                         scrollTop >= curTop &&
                         scrollTop <= curTop + curHeight;
                 } else {
-                    let nextTop = this.itemListDom[i + 1].offsetTop;
+                    let nextTop = _this.itemListDom[i + 1].offsetTop;
                     interval = scrollTop >= curTop && scrollTop < nextTop;
                 }
-                if (interval) this.tabIndex = i;
+                if (interval) _this.tabIndex = i;
                 // 滚动到第一个字母前
-                if (scrollTop < this.itemListDom[0].offsetTop) this.tabIndex = -1;
+                if (scrollTop < _this.itemListDom[0].offsetTop) _this.tabIndex = -1;
                 // 滚动到页面最底部（最后一个字母时）
-                if (isBottom) this.tabIndex = this.itemListDom.length - 1;
+                if (isBottom) _this.tabIndex = _this.itemListDom.length - 1;
             }
-            this.callback(this.tabIndex)
-        })
+            _this.callback(_this.tabIndex)
+        }, 200, 500))
     }
 
     click(id, index) {
@@ -51,32 +52,46 @@ class Tablink {
         this.contentDom.scrollTo(0, dom.offsetTop - this.offset);
     }
 
+    throttle(func, wait, mustRun) {
+        let timeout,
+            startTime = new Date();
+
+        return function () {
+            let context = this,
+                args = arguments,
+                curTime = new Date();
+
+            clearTimeout(timeout);
+            // 如果达到了规定的触发时间间隔，触发 handler
+            if (curTime - startTime >= mustRun) {
+                func.apply(context, args);
+                startTime = curTime;
+                // 没达到触发间隔，重新设定定时器
+            } else {
+                timeout = setTimeout(func, wait);
+            }
+        };
+    };
+
+    debounce(func, wait, immediate) {
+        let timeout;
+        return function () {
+            let context = this, args = arguments;
+            let later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            let callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
     init() {
         if (!this.contentDom) return
         this.listener()
     }
 }
 
-
-/*function Tablink(options = {}) {
-    console.log(123)
-    const defaultOptions = {
-        tabDom: null,
-        contentDom: null,
-    };
-    Object.assign(defaultOptions, options);
-    const _this = this;
-    const tabIndex = -1;
-    this.Init = () => {
-
-    };
-    this.Listener = () => {
-
-    };
-
-    this.click = () => {
-
-    };
-}*/
-
-// module.exports = Tablink;
+export default Tablink
