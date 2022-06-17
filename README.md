@@ -12,4 +12,6 @@
 
 ## Usage
 
-
+> <code>import Tablink from "Tablink.js"; let a = new Tablink({ contentDom: cityList, tabDom: letterList, itemListDom: itemList, callback })
+a.init()
+</code>
