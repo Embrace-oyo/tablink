@@ -11,5 +11,5 @@
 > npm install tablink.js
 
 ## Usage
-123123
+
 
